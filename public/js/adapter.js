@@ -64,7 +64,10 @@ if (navigator.mozGetUserMedia) {
   // getUserMedia shim (only difference is the prefix).
   // Code from Adam Barth.
   getUserMedia = navigator.mozGetUserMedia.bind(navigator);
-  navigator.getUserMedia = getUserMedia;
+  //navigator.getUserMedia = getUserMedia;
+  navigator.getUserMedia = navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia;
 
   // Shim for MediaStreamTrack.getSources.
   MediaStreamTrack.getSources = function(successCb) {
@@ -187,7 +190,10 @@ if (navigator.mozGetUserMedia) {
   // Get UserMedia (only difference is the prefix).
   // Code from Adam Barth.
   getUserMedia = navigator.webkitGetUserMedia.bind(navigator);
-  navigator.getUserMedia = getUserMedia;
+  //navigator.getUserMedia = getUserMedia;
+    navigator.getUserMedia = navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia;
 
   // Attach a media stream to an element.
   attachMediaStream = function(element, stream) {
