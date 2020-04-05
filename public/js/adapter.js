@@ -65,8 +65,11 @@ if (navigator.mozGetUserMedia) {
   // Code from Adam Barth.
   //getUserMedia = navigator.mozGetUserMedia.bind(navigator);
   getUserMedia = navigator.mediaDevices.enumerateDevices();;
-  navigator.getUserMedia = getUserMedia;
-
+  //navigator.getUserMedia = getUserMedia;
+  navigator.getUserMedia = (navigator.getUserMedia ||
+                            navigator.webkitGetUserMedia ||
+                            navigator.mozGetUserMedia || 
+                            navigator.msGetUserMedia);
   // Shim for MediaStreamTrack.getSources.
   MediaStreamTrack.getSources = function(successCb) {
     setTimeout(function() {
@@ -189,7 +192,11 @@ if (navigator.mozGetUserMedia) {
   // Code from Adam Barth.
   //getUserMedia = navigator.webkitGetUserMedia.bind(navigator);
   getUserMedia = navigator.mediaDevices.enumerateDevices();;
-  navigator.getUserMedia = getUserMedia;
+    //navigator.getUserMedia = getUserMedia;
+  navigator.getUserMedia = (navigator.getUserMedia ||
+                            navigator.webkitGetUserMedia ||
+                            navigator.mozGetUserMedia || 
+                            navigator.msGetUserMedia);
 
   // Attach a media stream to an element.
   attachMediaStream = function(element, stream) {
