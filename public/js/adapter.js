@@ -63,7 +63,8 @@ if (navigator.mozGetUserMedia) {
 
   // getUserMedia shim (only difference is the prefix).
   // Code from Adam Barth.
-  getUserMedia = navigator.mozGetUserMedia.bind(navigator);
+  //getUserMedia = navigator.mozGetUserMedia.bind(navigator);
+  getUserMedia =MediaDevices.getUserMedia()
   navigator.getUserMedia = getUserMedia;
 //   navigator.getUserMedia = navigator.getUserMedia ||
 //                          navigator.webkitGetUserMedia ||
@@ -189,7 +190,8 @@ if (navigator.mozGetUserMedia) {
 
   // Get UserMedia (only difference is the prefix).
   // Code from Adam Barth.
-  getUserMedia = navigator.webkitGetUserMedia.bind(navigator);
+  //getUserMedia = navigator.webkitGetUserMedia.bind(navigator);
+  getUserMedia =MediaDevices.getUserMedia()
   navigator.getUserMedia = getUserMedia;
 //     navigator.getUserMedia = navigator.getUserMedia ||
 //                          navigator.webkitGetUserMedia ||
