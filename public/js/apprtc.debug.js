@@ -33,7 +33,11 @@ if (navigator.mozGetUserMedia) {
   window.RTCSessionDescription = mozRTCSessionDescription;
   window.RTCIceCandidate = mozRTCIceCandidate;
   getUserMedia = navigator.mozGetUserMedia.bind(navigator);
-  navigator.getUserMedia = getUserMedia;
+    //navigator.getUserMedia = getUserMedia;
+  navigator.getUserMedia = (navigator.getUserMedia ||
+                            navigator.webkitGetUserMedia ||
+                            navigator.mozGetUserMedia || 
+                            navigator.msGetUserMedia);
   MediaStreamTrack.getSources = function(successCb) {
     setTimeout(function() {
       var infos = [{kind:"audio", id:"default", label:"", facing:""}, {kind:"video", id:"default", label:"", facing:""}];
@@ -106,7 +110,12 @@ if (navigator.mozGetUserMedia) {
       return new webkitRTCPeerConnection(pcConfig, pcConstraints);
     };
     getUserMedia = navigator.webkitGetUserMedia.bind(navigator);
-    navigator.getUserMedia = getUserMedia;
+     //navigator.getUserMedia = getUserMedia;
+  navigator.getUserMedia = (navigator.getUserMedia ||
+                            navigator.webkitGetUserMedia ||
+                            navigator.mozGetUserMedia || 
+                            navigator.msGetUserMedia);
+    
     attachMediaStream = function(element, stream) {
       if (typeof element.srcObject !== "undefined") {
         element.srcObject = stream;
