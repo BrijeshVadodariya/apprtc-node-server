@@ -20,6 +20,15 @@ var reattachMediaStream = null;
 var webrtcDetectedBrowser = null;
 var webrtcDetectedVersion = null;
 
+
+
+  // Normalize the various vendor prefixed versions of getUserMedia.
+  navigator.getUserMedia = (navigator.getUserMedia ||
+                            navigator.webkitGetUserMedia ||
+                            navigator.mozGetUserMedia || 
+                            navigator.msGetUserMedia);
+
+
 function trace(text) {
   // This function is used for logging.
   if (text[text.length - 1] === '\n') {
